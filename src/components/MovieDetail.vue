@@ -14,7 +14,8 @@ const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280";
 export default {
   data() {
     return {
-      movie: {}
+      movie: {},
+      API: process.env.VUE_APP_API_KEY
     };
   },
   created: function() {
@@ -38,7 +39,7 @@ export default {
     fetchData: async function() {
       try {
         const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${this.$route.params.id}?api_key=a7682595368d262d972b855b56eab5c5`
+          `https://api.themoviedb.org/3/movie/${this.$route.params.id}?api_key=${this.API}`
         );
         const movie = await res.json();
         this.movie = movie;
